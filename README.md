@@ -6,7 +6,7 @@
 Утилита для сравнения файлов форматов *.json. 
 
 #### Пример 
-
+[ссылка на asciinema с примером](https://asciinema.org/a/yS9qFEeugnPfn6dZGTJQO4MYS)
 
 ## Установка
 ```
