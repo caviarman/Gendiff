@@ -7,6 +7,7 @@
 
 #### Пример 
 [asciinema задание 1](https://asciinema.org/a/yS9qFEeugnPfn6dZGTJQO4MYS)
+
 [asciinema задание 2](https://asciinema.org/a/I8id7FKUk5OeNZ2xA5LSzOY5V)
 
 
