@@ -25,3 +25,9 @@ export const getDiff = ast => ast.reduce((acc, item) => {
   return acc;
 }, '');
 
+export const findDiff = (firstPath, secondPath) => {
+  const ast = getAst(firstPath, secondPath);
+  const diff = getDiff(ast);
+  return diff;
+};
+
