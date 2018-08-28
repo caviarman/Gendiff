@@ -2,9 +2,10 @@
 
 import program from 'commander';
 import { findDiff } from '..';
+import { version } from '../../package.json';
 
 program
-  .version('1.0.4')
+  .version(version)
   .description('Compares two configuration files and shows a difference.')
   .option('-f, --format [type]', 'Output format')
   .arguments('<firstConfig> <secondConfig>')

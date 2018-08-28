@@ -1,12 +1,24 @@
 import fs from 'fs';
 import _ from 'lodash';
+import yaml from 'js-yaml';
+import path from 'path';
 
-const getObjFromJson = path => JSON.parse(fs.readFileSync(path, 'utf-8'));
-
+const getObjFromJson = file => JSON.parse(fs.readFileSync(file, 'utf-8'));
+const getObjFromYaml = file => yaml.safeLoad(fs.readFileSync(file, 'utf-8'));
+const getExtension = file => path.extname(file);
+const extensions = {
+  '.json': file => getObjFromJson(file),
+  '.yaml': file => getObjFromYaml(file),
+};
+const getObjFromFile = (file) => {
+  const extention = getExtension(file);
+  const parse = extensions[extention];
+  return parse(file);
+};
 
 export const getAst = (firstPath, secondPath) => {
-  const before = getObjFromJson(firstPath);
-  const after = getObjFromJson(secondPath);
+  const before = getObjFromFile(firstPath);
+  const after = getObjFromFile(secondPath);
   const uniqKeys = _.union(Object.keys(before), Object.keys(after));
   const result = uniqKeys.reduce((acc, item) => [...acc, {
     name: item,
