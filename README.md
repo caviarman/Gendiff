@@ -12,6 +12,7 @@
 
 [asciinema задание 3](https://asciinema.org/a/Rjp5MVszF95ZOjAZv9FCc2dHq)
 
+[asciinema задание 4](https://asciinema.org/a/4ewR9WcFagGCAqOyz161LEkj6)
 
 ## Установка
 ```
