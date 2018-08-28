@@ -1,14 +1,17 @@
 import fs from 'fs';
 import _ from 'lodash';
+import ini from 'ini';
 import yaml from 'js-yaml';
 import path from 'path';
 
 const getObjFromJson = file => JSON.parse(fs.readFileSync(file, 'utf-8'));
 const getObjFromYaml = file => yaml.safeLoad(fs.readFileSync(file, 'utf-8'));
+const getObjFromIni = file => ini.parse(fs.readFileSync(file, 'utf-8'));
 const getExtension = file => path.extname(file);
 const extensions = {
   '.json': file => getObjFromJson(file),
   '.yaml': file => getObjFromYaml(file),
+  '.ini': file => getObjFromIni(file),
 };
 const getObjFromFile = (file) => {
   const extention = getExtension(file);

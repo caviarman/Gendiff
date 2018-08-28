@@ -31,5 +31,11 @@ describe('It works', () => {
     const ast = getAst(first, second);
     expect(getDiff(ast)).toEqual('host: hexlet.io\n- timeout: 50\n+ timeout: 20\n- proxy: 123.234.53.22\n- follow: false\n+ verbose: true\n');
   });
+  it('diff ini', () => {
+    const first = '__tests__/__fixtures__/first.ini';
+    const second = '__tests__/__fixtures__/second.ini';
+    const ast = getAst(first, second);
+    expect(getDiff(ast)).toEqual('- user: dbuser\n+ user: dbroot\npassword: dbpassword\n- database: use_this_database\n+ name: Vladimir\n');
+  });
 });
 
