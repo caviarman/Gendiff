@@ -10,6 +10,8 @@
 
 [asciinema задание 2](https://asciinema.org/a/I8id7FKUk5OeNZ2xA5LSzOY5V)
 
+[asciinema задание 3](https://asciinema.org/a/Rjp5MVszF95ZOjAZv9FCc2dHq)
+
 
 ## Установка
 ```
