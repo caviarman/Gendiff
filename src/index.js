@@ -4,21 +4,22 @@ import ini from 'ini';
 import yaml from 'js-yaml';
 import path from 'path';
 
-const getObjFromJson = file => JSON.parse(fs.readFileSync(file, 'utf-8'));
-const getObjFromYaml = file => yaml.safeLoad(fs.readFileSync(file, 'utf-8'));
-const getObjFromIni = file => ini.parse(fs.readFileSync(file, 'utf-8'));
+const getStrFromFile = file => fs.readFileSync(file, 'utf-8');
 const getExtension = file => path.extname(file);
-const extensions = {
-  '.json': file => getObjFromJson(file),
-  '.yaml': file => getObjFromYaml(file),
-  '.ini': file => getObjFromIni(file),
+const parsers = {
+  '.json': file => JSON.parse(file),
+  '.yaml': file => yaml.safeLoad(file),
+  '.ini': file => ini.parse(file),
 };
-const getObjFromFile = (file) => {
+const parse = (str, extention) => parsers[extention](str);
+
+export const getObjFromFile = (file) => {
+  const str = getStrFromFile(file);
   const extention = getExtension(file);
-  const parse = extensions[extention];
-  return parse(file);
+  return parse(str, extention);
 };
-const Diff = (before, after) => {
+
+export const Diff = (before, after) => {
   const unionKeys = _.union(Object.keys(before), Object.keys(after));
   return unionKeys.reduce((acc, item) => {
     if ((_.has(before, item) && _.has(after, item)) && before[item] === after[item]) return acc.concat(`${item}: ${before[item]}\n`);

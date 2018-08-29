@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import program from 'commander';
-import { findDiff } from '..';
+import { getObjFromFile, Diff } from '..';
 import { version } from '../../package.json';
 
 program
@@ -10,7 +10,9 @@ program
   .option('-f, --format [type]', 'Output format')
   .arguments('<firstConfig> <secondConfig>')
   .action((firstConfig, secondConfig) => {
-    const result = findDiff(firstConfig, secondConfig);
+    const before = getObjFromFile(firstConfig);
+    const after = getObjFromFile(secondConfig);
+    const result = Diff(before, after);
     console.log(result);
   })
   .parse(process.argv);
