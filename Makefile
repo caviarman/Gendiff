@@ -5,7 +5,7 @@ start:
 publish:
 	npm publish
 lint:
-	npm run eslint src
+	npm run eslint .
 build:
 	rm -rf dist
 	npm run build

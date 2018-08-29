@@ -18,31 +18,21 @@ const getObjFromFile = (file) => {
   const parse = extensions[extention];
   return parse(file);
 };
-
-export const getAst = (firstPath, secondPath) => {
-  const before = getObjFromFile(firstPath);
-  const after = getObjFromFile(secondPath);
-  const uniqKeys = _.union(Object.keys(before), Object.keys(after));
-  const result = uniqKeys.reduce((acc, item) => [...acc, {
-    name: item,
-    before: before[item],
-    after: after[item],
-  }], []);
-  return result;
+const Diff = (before, after) => {
+  const unionKeys = _.union(Object.keys(before), Object.keys(after));
+  return unionKeys.reduce((acc, item) => {
+    if ((_.has(before, item) && _.has(after, item)) && before[item] === after[item]) return acc.concat(`${item}: ${before[item]}\n`);
+    if ((_.has(before, item) && _.has(after, item)) && before[item] !== after[item]) return acc.concat(`- ${item}: ${before[item]}\n+ ${item}: ${after[item]}\n`);
+    if (_.has(before, item) && !(_.has(after, item))) return acc.concat(`- ${item}: ${before[item]}\n`);
+    if (!(_.has(before, item) && _.has(after, item))) return acc.concat(`+ ${item}: ${after[item]}\n`);
+    return acc;
+  }, '');
 };
 
-export const getDiff = ast => ast.reduce((acc, item) => {
-  const { name, before, after } = item;
-  if (before === after) return acc.concat(`${name}: ${before}\n`);
-  if (before && after) return acc.concat(`- ${name}: ${before}\n+ ${name}: ${after}\n`);
-  if (before === undefined) return acc.concat(`+ ${name}: ${after}\n`);
-  if (after === undefined) return acc.concat(`- ${name}: ${before}\n`);
-  return acc;
-}, '');
-
-export const findDiff = (firstPath, secondPath) => {
-  const ast = getAst(firstPath, secondPath);
-  const diff = getDiff(ast);
+export default (firstPath, secondPath) => {
+  const before = getObjFromFile(firstPath);
+  const after = getObjFromFile(secondPath);
+  const diff = Diff(before, after);
   return diff;
 };
 

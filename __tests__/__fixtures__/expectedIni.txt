@@ -1,0 +1,5 @@
+- user: dbuser
++ user: dbroot
+password: dbpassword
+- database: use_this_database
++ name: Vladimir
