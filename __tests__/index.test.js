@@ -2,26 +2,28 @@
 import fs from 'fs';
 import getDiff from '../src';
 
+const path = '__tests__/__fixtures__/';
+
 describe('It works', () => {
   it('diff json', () => {
-    const first = '__tests__/__fixtures__/first.json';
-    const second = '__tests__/__fixtures__/second.json';
-    expect(getDiff(first, second)).toEqual(fs.readFileSync('__tests__/__fixtures__/expected.txt', 'utf-8'));
+    const before = `${path}before.json`;
+    const after = `${path}after.json`;;
+    expect(getDiff(before, after)).toEqual(fs.readFileSync(`${path}expected.txt`, 'utf-8'));
   });
   it('diff yaml', () => {
-    const first = '__tests__/__fixtures__/first.yaml';
-    const second = '__tests__/__fixtures__/second.yaml';
-    expect(getDiff(first, second)).toEqual(fs.readFileSync('__tests__/__fixtures__/expected.txt', 'utf-8'));
+    const before = `${path}before.yaml`;;
+    const after = `${path}after.yaml`;;
+    expect(getDiff(before, after)).toEqual(fs.readFileSync(`${path}expected.txt`, 'utf-8'));
   });
   it('diff json vs yaml', () => {
-    const first = '__tests__/__fixtures__/first.json';
-    const second = '__tests__/__fixtures__/second.yaml';
-    expect(getDiff(first, second)).toEqual(fs.readFileSync('__tests__/__fixtures__/expected.txt', 'utf-8'));
+    const before = `${path}before.json`;
+    const after = `${path}after.yaml`;
+    expect(getDiff(before, after)).toEqual(fs.readFileSync(`${path}expected.txt`, 'utf-8'));
   });
   it('diff ini', () => {
-    const first = '__tests__/__fixtures__/first.ini';
-    const second = '__tests__/__fixtures__/second.ini';
-    expect(getDiff(first, second)).toEqual(fs.readFileSync('__tests__/__fixtures__/expectedIni.txt', 'utf-8'));
+    const before = `${path}before.ini`;
+    const after = `${path}after.ini`;
+    expect(getDiff(before, after)).toEqual(fs.readFileSync(`${path}expectedIni.txt`, 'utf-8'));
   });
 });
 
