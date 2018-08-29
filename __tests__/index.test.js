@@ -1,5 +1,5 @@
 import fs from 'fs';
-import Diff from '../src';
+import { Diff } from '../src';
 
 describe('It works', () => {
   it('diff json', () => {
