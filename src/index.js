@@ -1,4 +1,6 @@
 import _ from 'lodash';
+import fs from 'fs';
+import path from 'path';
 import parse from './parsing';
 
 const render = (before, after) => {
@@ -13,8 +15,12 @@ const render = (before, after) => {
 };
 
 export default (firstPath, secondPath) => {
-  const before = parse(firstPath);
-  const after = parse(secondPath);
+  const beforeExtention = path.extname(firstPath);
+  const afterExtension = path.extname(secondPath);
+  const beforeStr = fs.readFileSync(firstPath, 'utf-8');
+  const afterStr = fs.readFileSync(secondPath, 'utf-8');
+  const before = parse(beforeStr, beforeExtention);
+  const after = parse(afterStr, afterExtension);
   return render(before, after);
 };
 
