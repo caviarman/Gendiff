@@ -7,12 +7,12 @@ const path = '__tests__/__fixtures__/';
 describe('It works', () => {
   it('diff json', () => {
     const before = `${path}before.json`;
-    const after = `${path}after.json`;;
+    const after = `${path}after.json`;
     expect(getDiff(before, after)).toEqual(fs.readFileSync(`${path}expected.txt`, 'utf-8'));
   });
   it('diff yaml', () => {
-    const before = `${path}before.yaml`;;
-    const after = `${path}after.yaml`;;
+    const before = `${path}before.yaml`;
+    const after = `${path}after.yaml`;
     expect(getDiff(before, after)).toEqual(fs.readFileSync(`${path}expected.txt`, 'utf-8'));
   });
   it('diff json vs yaml', () => {
