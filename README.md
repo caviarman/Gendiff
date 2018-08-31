@@ -14,6 +14,8 @@
 
 [asciinema задание 4](https://asciinema.org/a/4ewR9WcFagGCAqOyz161LEkj6)
 
+[asciinema задание 5](https://asciinema.org/a/H9VIhjoy73DciOdJVMT3lAmmR)
+
 ## Установка
 ```
 npm install gendiff-vi
