@@ -23,7 +23,7 @@ describe('It works', () => {
   it('diff inner json', () => {
     const before = `${path}beforeInner.json`;
     const after = `${path}afterInner.json`;
-    expect(getDiff(before, after)).toEqual(fs.readFileSync(`${path}expectedSimple.txt`, 'utf-8'));
+    expect(getDiff(before, after)).toEqual(fs.readFileSync(`${path}expectedInner.txt`, 'utf-8'));
   });
 });
 
