@@ -1,4 +1,4 @@
-import defaultRender from './renderDefault';
+import commonRender from './renderCommon';
 import plainRender from './renderPlain';
 
 export default (ast, format) => {
@@ -6,6 +6,6 @@ export default (ast, format) => {
     case 'plain':
       return plainRender(ast);
     default:
-      return defaultRender(ast);
+      return commonRender(ast);
   }
 };

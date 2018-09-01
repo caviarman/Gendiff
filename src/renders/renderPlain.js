@@ -1,25 +1,33 @@
 import _ from 'lodash';
 
-const isComplex = value => (_.isObject(value) ? '[complex value]' : value);
+const checkComplex = value => (_.isObject(value) ? '[complex value]' : value);
 
-const renderPlain = ast => ast.reduce((acc, item) => {
-  const {
-    type, key, path, beforeValue, afterValue, children,
-  } = item;
-  const before = isComplex(beforeValue);
-  const after = isComplex(afterValue);
-  switch (type) {
-    case 'nested':
-      return acc.concat(`${renderPlain(children)}`);
-    case 'changed':
-      return acc.concat(`\nProperty '${path}${key}' was updated. From '${before}' to '${after}'`);
-    case 'deleted':
-      return acc.concat(`\nProperty '${path}${key}' was removed`);
-    case 'added':
-      return acc.concat(`\nProperty '${path}${key}' was added with value: '${after}'`);
-    default:
-      return acc;
-  }
-}, '');
+const render = (ast, path = '') => {
+  const result = ast.filter(item => item.type !== 'unchanged')
+    .map((item) => {
+      const {
+        key, type, children, beforeValue, afterValue,
+      } = item;
 
-export default renderPlain;
+      const before = checkComplex(beforeValue);
+      const after = checkComplex(afterValue);
+      const name = `${path}${key}`;
+      const nameForChildren = `${path}${key}.`;
+
+      switch (type) {
+        case 'nested':
+          return render(children, nameForChildren);
+        case 'added':
+          return `Property '${name}' was added with value: ${after}`;
+        case 'changed':
+          return `Property '${name}' was updated. From ${before} to ${after}`;
+        case 'deleted':
+          return `Property '${name}' was removed`;
+        default:
+          throw new Error('Undefined node type');
+      }
+    });
+  return _.flattenDeep(result).join('\n');
+};
+
+export default render;

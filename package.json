@@ -1,6 +1,6 @@
 {
   "name": "gendiff-vi",
-  "version": "1.2.2",
+  "version": "1.2.5",
   "description": "",
   "main": "dist/index.js",
   "bin": {

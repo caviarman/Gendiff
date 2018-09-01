@@ -1,4 +1,3 @@
-
 - user: dbuser
 + user: dbroot
   password: dbpassword
