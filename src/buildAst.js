@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-const buildAst = (before, after, depth = 0) => {
+const buildAst = (before, after, depth = 0, route = '') => {
   const keys = _.union(Object.keys(before), Object.keys(after));
   return keys.reduce((acc, item) => {
     if ((_.has(before, item) && _.has(after, item))
@@ -9,7 +9,8 @@ const buildAst = (before, after, depth = 0) => {
         type: 'nested',
         key: item,
         level: depth,
-        children: buildAst(before[item], after[item], depth + 1),
+        path: route,
+        children: buildAst(before[item], after[item], depth + 1, `${route}${item}.`),
       });
     }
     if ((_.has(before, item) && _.has(after, item)) && before[item] === after[item]) {
@@ -18,6 +19,7 @@ const buildAst = (before, after, depth = 0) => {
         key: item,
         beforeValue: before[item],
         afterValue: after[item],
+        path: route,
         level: depth,
       });
     }
@@ -27,6 +29,7 @@ const buildAst = (before, after, depth = 0) => {
         key: item,
         beforeValue: before[item],
         afterValue: after[item],
+        path: route,
         level: depth,
       });
     }
@@ -36,6 +39,7 @@ const buildAst = (before, after, depth = 0) => {
         key: item,
         beforeValue: before[item],
         afterValue: null,
+        path: route,
         level: depth,
       });
     }
@@ -45,6 +49,7 @@ const buildAst = (before, after, depth = 0) => {
         key: item,
         beforeValue: null,
         afterValue: after[item],
+        path: route,
         level: depth,
       });
     }
