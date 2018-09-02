@@ -16,7 +16,7 @@
 
 [asciinema задание 5](https://asciinema.org/a/H9VIhjoy73DciOdJVMT3lAmmR)
 
-[asciinema задание 6](https://asciinema.org/a/1Jjm3gMUb83b7nbLOBIVDwuRQ)
+[asciinema задание 6](https://asciinema.org/a/sTtq6alq95N7X3tiOQ34Oy99p)
 
 ## Установка
 ```

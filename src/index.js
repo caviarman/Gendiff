@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import parse from './parsing';
 import buildAst from './buildAst';
-import render from './renders/render';
+import render from './renders';
 
 export default (firstPath, secondPath, format) => {
   const beforeExtention = path.extname(firstPath);
