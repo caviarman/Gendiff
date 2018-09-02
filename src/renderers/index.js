@@ -1,6 +1,6 @@
-import common from './renderCommon';
-import plain from './renderPlain';
-import json from './renderJson';
+import common from './rendererDiff';
+import plain from './rendererPlain';
+import json from './rendererJson';
 
 export default (ast, format) => {
   switch (format) {

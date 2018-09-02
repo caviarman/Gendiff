@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-const checkComplex = value => (_.isObject(value) ? '[complex value]' : value);
+const getValue = value => (_.isObject(value) ? '[complex value]' : value);
 
 const render = (ast, path = '') => {
   const result = ast.filter(item => item.type !== 'unchanged')
@@ -9,8 +9,8 @@ const render = (ast, path = '') => {
         key, type, children, beforeValue, afterValue,
       } = item;
 
-      const before = checkComplex(beforeValue);
-      const after = checkComplex(afterValue);
+      const before = getValue(beforeValue);
+      const after = getValue(afterValue);
       const name = `${path}${key}`;
       const nameForChildren = `${path}${key}.`;
 
