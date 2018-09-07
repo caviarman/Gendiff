@@ -6,22 +6,27 @@
 Утилита для сравнения файлов форматов *.json, *.yaml, *.ini
 
 #### Пример 
-[asciinema задание 1](https://asciinema.org/a/yS9qFEeugnPfn6dZGTJQO4MYS)
+Получение результата возможно в трех вариантах:
 
-[asciinema задание 2](https://asciinema.org/a/I8id7FKUk5OeNZ2xA5LSzOY5V)
+[в виде структуры](https://asciinema.org/a/H9VIhjoy73DciOdJVMT3lAmmR)
 
-[asciinema задание 3](https://asciinema.org/a/Rjp5MVszF95ZOjAZv9FCc2dHq)
+[в виде простого текста](https://asciinema.org/a/sTtq6alq95N7X3tiOQ34Oy99p)
 
-[asciinema задание 4](https://asciinema.org/a/4ewR9WcFagGCAqOyz161LEkj6)
-
-[asciinema задание 5](https://asciinema.org/a/H9VIhjoy73DciOdJVMT3lAmmR)
-
-[asciinema задание 6](https://asciinema.org/a/sTtq6alq95N7X3tiOQ34Oy99p)
-
-[asciinema задание 7](https://asciinema.org/a/OXSrhMq5cSAADYDa90Z5TaVvF)
+[в формате JSON](https://asciinema.org/a/OXSrhMq5cSAADYDa90Z5TaVvF)
 
 
 ## Установка
 ```
-npm install gendiff-vi
+npm install -g gendiff-vi
 ```
+## Использование
+
+  Usage: gendiff [options] <firstConfig> <secondConfig>
+
+  Compares two configuration files and shows a difference.
+
+  Options:
+
+    -V, --version        output the version number
+    -f, --format [type]  Output format
+    -h, --help           output usage information
